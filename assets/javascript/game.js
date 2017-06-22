@@ -9,11 +9,38 @@ var wins = 0;
 var currentCountry = [];
 var guessesRemaining = 12;
 var lettersGuessed = [];
+//This is a function called get All indexes
+//It has two parameters
+//arr meaning the name of the array
+//val meaning the value we want to check for in our array
+function getAllIndexes(arr, val) {
+	//This makes an empty array called indexes
+	var indexes = [];
+	//This sets a variable i to 0
+	//This is a for loop it starts at 0.
+	//It will keep going until i is smaller than the length of the array is false
+	//This will increment i by 1 at the end of the loop
+	for(i = 0; i < arr.length; i++) {
+		//The array will only run if the referenced index number of the array is equal to the value we specified in our function
+		if (arr[i] === val)
+			//This adds that value to our index array 
+			indexes.push(i);
+	}
+	return indexes;
+};
+
+
+
+
+
+
+
 
 //Hangman Country Generator
 var randomNumber = Math.floor(Math.random() * 208);
 //This uses the the random number to reference the country by acting as the index number
 var randomCountry = lCaseCountryList[randomNumber];
+console.log(randomCountry);
 //This splits the name of the country into letters
 var hangmanWord = randomCountry.split("");
 console.log(hangmanWord);
@@ -42,6 +69,23 @@ document.getElementById("hangman").addEventListener("keypress", function(event) 
 	var alphabetNumber = htmlCode - 97;
 	document.getElementById("alphabetNumber").innerHTML = "Alphabet Number in Index:" + " " + alphabetNumber;
 	var letter = alphabet[alphabetNumber];
+	console.log(letter);
 	document.getElementById("letter").innerHTML = "Letter You Chose:" + " " + letter;
+	if (randomCountry.match(letter)) {
+		console.log("Success");
+		var successfulAttempts = getAllIndexes(hangmanWord, letter);
+		console.log(successfulAttempts);
+		
+	}
+	else {
+		console.log("Fail");
+	}
 });
+
+
+
+
+
+
+
 
