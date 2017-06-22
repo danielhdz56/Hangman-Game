@@ -30,6 +30,17 @@ function getAllIndexes(arr, val) {
 };
 
 
+//Created a String.replaceAt method 
+//The first parameter is the index number
+//The second parameter is what I am replacing it with
+String.prototype.replaceAt = function(index, replacement) {
+	//Remember that because the "this" keyword is used inside the function and that function is defined by the the string, 
+	//"this" refers to the String
+	//The substring is used to write the characters from 0 to the index number.
+	console.log(this);
+	return this.substr(0, index) + replacement + this.substr(index, this.length - 3);
+}
+
 
 
 
@@ -59,6 +70,8 @@ var blankSpacesCommas = currentCountry.toString();
 //_ _ _ _ _
 var blankSpacesNoCommas = blankSpacesCommas.replace(/,/g, " ");
 console.log(blankSpacesNoCommas);
+//This replaces commas and has no spaces either
+var blankSpacesNoCommasNoSpaces = blankSpacesCommas.replace(/,/g, "");
 document.getElementById("currentCountry").innerHTML = blankSpacesNoCommas;
 
 //User Input Letter Generator
@@ -75,7 +88,8 @@ document.getElementById("hangman").addEventListener("keypress", function(event) 
 		console.log("Success");
 		var successfulAttempts = getAllIndexes(hangmanWord, letter);
 		console.log(successfulAttempts);
-		
+		var updatedHangman = blankSpacesNoCommasNoSpaces.replaceAt(successfulAttempts, letter);
+		console.log(updatedHangman);
 	}
 	else {
 		console.log("Fail");
