@@ -21,11 +21,16 @@ var randomCountry = lCaseCountryList[randomNumber];
 //STEP4: TURN INTO HANGMAN FORM
 //The /./ matches everything
 //Future reference, If I want to use the literal . I have to escape it  /\./
-var hangmanWord = randomCountry.replace(/./gi, "_ ");
+var hangmanWord = randomCountry.replace(/./gi, "_");
 console.log(randomCountry);
 console.log(hangmanWord);
 //////////////////////////////////////////////////////////////
-//STEP5: RECOGNIZE KEY INPUT FROM USER
+//STEP5: CREATE A REPLACE AT FUNCTION THAT WILL BE USED LATER 
+String.prototype.replaceAt = function(indexMatched, guess) {
+	return this.substr(0, indexMatched) + guess + this.substr(indexMatched + guess.length);
+}
+//////////////////////////////////////////////////////////////
+//STEP6: RECOGNIZE KEY INPUT FROM USER
 //You can addEventListener directly to the document, you don't have to getElementById first!
 //I am detecting for a keypress event 
 //I am going to run a function with a parameter of userInput
@@ -34,5 +39,21 @@ document.addEventListener("keypress", function(userInput) {
 	//INSPECTING THIS IN THE CONSOLE HELPS TO UNDERSTAND WHAT THE PARAMETER IS: console.log(userInput);
 	//The String.fromCharCode method returns a string based on the value associated with the key that was pressed
 	//Note: This works if the user's browser supports keyCode or which
-	console.log(String.fromCharCode(userInput.keyCode||userInput.which));
+	var guess = String.fromCharCode(userInput.keyCode||userInput.which);
+	if (lettersAlreadyGuessed.indexOf(guess) === -1) {
+		lettersAlreadyGuessed.push(guess);
+		console.log(lettersAlreadyGuessed);
+		console.log(guess);
+		//Creating a for loop that iterates every index of the randomCountry string
+		for (i=0; i < randomCountry.length; i++) {
+			//At every iteration i am going to check if there is a match
+			if (guess === randomCountry[i]) {
+				//if there is a match I am going to update my hangmanWord
+				hangmanWord = hangmanWord.replaceAt(i, guess);
+			}
+		}
+		console.log(hangmanWord);
+	}
+	else 
+		console.log("You already picked this letter");
 });
