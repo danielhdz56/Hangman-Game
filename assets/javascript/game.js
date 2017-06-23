@@ -27,6 +27,11 @@ console.log(hangmanWord);
 //////////////////////////////////////////////////////////////
 //STEP5: CREATE A REPLACE AT FUNCTION THAT WILL BE USED LATER 
 String.prototype.replaceAt = function(indexMatched, guess) {
+	//this refers to the string that I use the replaceAt function on
+	//For Example: hangmanWord.replaceAt(i, guess);
+	//this will refer to hangmanWord
+	//substr(0, indexMatched) will return a substring of "this" starting from 0 to indexMatched
+	//this.substr(indexMatched + guess.length) doesn't specify an end, so it is going to stop until the end of "this"
 	return this.substr(0, indexMatched) + guess + this.substr(indexMatched + guess.length);
 }
 //////////////////////////////////////////////////////////////
