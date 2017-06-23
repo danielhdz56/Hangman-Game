@@ -48,6 +48,7 @@ document.addEventListener("keypress", function(userInput) {
 	//The code will not run if the user has already guessed this letter
 	// or if that letter was already figured out 
 	if (lettersAlreadyGuessed.indexOf(guess) === -1 || hangmanWord.indexOf(guess) === -1) {
+		//Will only run if the guess is correct, true
 		if (randomCountry.includes(guess)) {
 			//Creating a for loop that iterates every index of the randomCountry string
 			for (i=0; i < randomCountry.length; i++) {
@@ -60,8 +61,11 @@ document.addEventListener("keypress", function(userInput) {
 			console.log("You guessed correctly!");
 			console.log(hangmanWord);
 		}
+		//if the guess is not correct this will run
 		else {
 			lettersAlreadyGuessed.push(guess);
+			numberOfGuessesRemaining--;
+			console.log(numberOfGuessesRemaining);
 			console.log(lettersAlreadyGuessed);
 			console.log("You guessed incorrectly!")
 		}
