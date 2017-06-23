@@ -35,5 +35,4 @@ document.addEventListener("keypress", function(userInput) {
 	//The String.fromCharCode method returns a string based on the value associated with the key that was pressed
 	//Note: This works if the user's browser supports keyCode or which
 	console.log(String.fromCharCode(userInput.keyCode||userInput.which));
-
 });
