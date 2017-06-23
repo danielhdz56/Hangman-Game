@@ -40,7 +40,7 @@ document.addEventListener("keypress", function(userInput) {
 	//The String.fromCharCode method returns a string based on the value associated with the key that was pressed
 	//Note: This works if the user's browser supports keyCode or which
 	var guess = String.fromCharCode(userInput.keyCode||userInput.which);
-	if (lettersAlreadyGuessed.indexOf(guess) === -1) {
+	if (lettersAlreadyGuessed.indexOf(guess) === -1 || hangmanWord.indexOf(guess) === -1) {
 		lettersAlreadyGuessed.push(guess);
 		console.log(lettersAlreadyGuessed);
 		console.log(guess);
