@@ -48,18 +48,23 @@ document.addEventListener("keypress", function(userInput) {
 	//The code will not run if the user has already guessed this letter
 	// or if that letter was already figured out 
 	if (lettersAlreadyGuessed.indexOf(guess) === -1 || hangmanWord.indexOf(guess) === -1) {
-		lettersAlreadyGuessed.push(guess);
-		console.log(lettersAlreadyGuessed);
-		console.log(guess);
-		//Creating a for loop that iterates every index of the randomCountry string
-		for (i=0; i < randomCountry.length; i++) {
-			//At every iteration i am going to check if there is a match
-			if (guess === randomCountry[i]) {
+		if (randomCountry.includes(guess)) {
+			//Creating a for loop that iterates every index of the randomCountry string
+			for (i=0; i < randomCountry.length; i++) {
+				//At every iteration i am going to check if there is a match
+				if (guess === randomCountry[i]) {
 				//if there is a match I am going to update my hangmanWord
 				hangmanWord = hangmanWord.replaceAt(i, guess);
+				}
 			}
+			console.log("You guessed correctly!");
+			console.log(hangmanWord);
 		}
-		console.log(hangmanWord);
+		else {
+			lettersAlreadyGuessed.push(guess);
+			console.log(lettersAlreadyGuessed);
+			console.log("You guessed incorrectly!")
+		}
 	}
 	else 
 		console.log("You already picked this letter");
