@@ -45,9 +45,9 @@ document.addEventListener("keypress", function(userInput) {
 	//The String.fromCharCode method returns a string based on the value associated with the key that was pressed
 	//Note: This works if the user's browser supports keyCode or which
 	var guess = String.fromCharCode(userInput.keyCode||userInput.which);
-	//The code will not run if the user has already guessed this letter
-	// or if that letter was already figured out 
-	if (lettersAlreadyGuessed.indexOf(guess) === -1 || hangmanWord.indexOf(guess) === -1) {
+	//The code will only run if the user hasn't guessed that letter yet
+	//and if that letter hasn't already been successful
+	if (lettersAlreadyGuessed.indexOf(guess) === -1 && hangmanWord.indexOf(guess) === -1) {
 		//Will only run if the guess is correct, true
 		if (randomCountry.includes(guess)) {
 			//Creating a for loop that iterates every index of the randomCountry string
@@ -68,6 +68,7 @@ document.addEventListener("keypress", function(userInput) {
 			console.log(numberOfGuessesRemaining);
 			console.log(lettersAlreadyGuessed);
 			console.log("You guessed incorrectly!")
+			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
 		}
 	}
 	else 
