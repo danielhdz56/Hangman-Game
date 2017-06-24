@@ -58,22 +58,14 @@ document.addEventListener("keypress", function(event) {
 				if (guess === randomCountry[i]) {
 				//if there is a match I am going to update my hangmanWord
 				hangmanWord = hangmanWord.replaceAt(i, guess);
-
-
-
-
-				//This checks if we have guessed all the correct words
-				if (hangmanWord === randomCountry){
-					wins++;
-					document.getElementById("wins").innerHTML = wins;
-				}
-
-
-
 				}
 			}
-			console.log("You guessed correctly!");
 			console.log(hangmanWord);
+			//This checks if we have guessed all the correct words
+			if (hangmanWord === randomCountry){
+				wins++;
+				document.getElementById("wins").innerHTML = wins;
+			}
 		}
 		//if the guess is not correct this will run
 		else {
@@ -84,6 +76,16 @@ document.addEventListener("keypress", function(event) {
 			console.log("You guessed incorrectly!")
 			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
 		}
+		if (hangmanWord === randomCountry || numberOfGuessesRemaining === 0) {
+			randomNumber = Math.floor(Math.random() * lCaseCountryList.length);
+			randomCountry = lCaseCountryList[randomNumber];
+			hangmanWord = randomCountry.replace(/./gi, "_");
+			hangmanLetters = hangmanWord.replace(/_/gi, "_ ");
+			document.getElementById("currentCountry").innerHTML = hangmanLetters;
+			numberOfGuessesRemaining = 12;
+			lettersAlreadyGuessed = [];
+			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
+		}	
 	}
 	else 
 		console.log("You already picked this letter");
