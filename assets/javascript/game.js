@@ -1,6 +1,7 @@
 //STEP1: CREATE VARIABLES
 var numberOfGuessesRemaining = 12;
 var lettersAlreadyGuessed = [];
+var wins = 0;
 //STEP2: Creating Array with Country List
 //Got this online
 var countryList = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
@@ -22,8 +23,9 @@ var randomCountry = lCaseCountryList[randomNumber];
 //The /./ matches everything
 //Future reference, If I want to use the literal . I have to escape it  /\./
 var hangmanWord = randomCountry.replace(/./gi, "_");
+var hangmanLetters = hangmanWord.replace(/_/gi, "_ ");
 console.log(randomCountry);
-console.log(hangmanWord);
+document.getElementById("currentCountry").innerHTML = hangmanLetters;
 //////////////////////////////////////////////////////////////
 //STEP5: CREATE A REPLACE AT FUNCTION THAT WILL BE USED LATER 
 String.prototype.replaceAt = function(indexMatched, guess) {
@@ -38,13 +40,13 @@ String.prototype.replaceAt = function(indexMatched, guess) {
 //STEP6: RECOGNIZE KEY INPUT FROM USER
 //You can addEventListener directly to the document, you don't have to getElementById first!
 //I am detecting for a keypress event 
-//I am going to run a function with a parameter of userInput
-//The user input "stores" the key that was pressed by the user
-document.addEventListener("keypress", function(userInput) {
-	//INSPECTING THIS IN THE CONSOLE HELPS TO UNDERSTAND WHAT THE PARAMETER IS: console.log(userInput);
+//I am going to run a function with a parameter of event
+//The event "stores" the key that was pressed by the user
+document.addEventListener("keypress", function(event) {
+	//INSPECTING THIS IN THE CONSOLE HELPS TO UNDERSTAND WHAT THE PARAMETER IS: console.log(event);
 	//The String.fromCharCode method returns a string based on the value associated with the key that was pressed
 	//Note: This works if the user's browser supports keyCode or which
-	var guess = String.fromCharCode(userInput.keyCode||userInput.which);
+	var guess = String.fromCharCode(event.keyCode||event.which);
 	//The code will only run if the user hasn't guessed that letter yet
 	//and if that letter hasn't already been successful
 	if (lettersAlreadyGuessed.indexOf(guess) === -1 && hangmanWord.indexOf(guess) === -1) {
@@ -56,6 +58,18 @@ document.addEventListener("keypress", function(userInput) {
 				if (guess === randomCountry[i]) {
 				//if there is a match I am going to update my hangmanWord
 				hangmanWord = hangmanWord.replaceAt(i, guess);
+
+
+
+
+				//This checks if we have guessed all the correct words
+				if (hangmanWord === randomCountry){
+					wins++;
+					document.getElementById("wins").innerHTML = wins;
+				}
+
+
+
 				}
 			}
 			console.log("You guessed correctly!");
