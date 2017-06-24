@@ -24,3 +24,5 @@ Document.write to users for guesses already made has been added.
 Document.write to users for correct responses has been updated. 
 
 Fixed spacing issue of certain countries
+
+Accounted for special punctuation in country names
