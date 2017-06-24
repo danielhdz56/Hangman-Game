@@ -27,10 +27,8 @@ var hangmanWord = randomCountry.replace(/./gi, "_");
 //This takes into acount every match because of the .
 //After the 1 position it will copy the original value because of the $
 //After what you replaced it will add a space
-var hangmanLetters = hangmanWord.replace(/(.{1})/g, "$1 ");
-console.log(randomCountry);
-document.getElementById("currentCountry").innerHTML = hangmanLetters;
 //////////////////////////////////////////////////////////////
+
 //STEP5: CREATE A REPLACE AT FUNCTION THAT WILL BE USED LATER 
 String.prototype.replaceAt = function(indexMatched, guess) {
 	//this refers to the string that I use the replaceAt function on
@@ -41,6 +39,31 @@ String.prototype.replaceAt = function(indexMatched, guess) {
 	return this.substr(0, indexMatched) + guess + this.substr(indexMatched + guess.length);
 }
 //////////////////////////////////////////////////////////////
+for (i = 0; i < randomCountry.length; i++) {
+	if (" " === randomCountry[i]) {
+			//If you just use " " instead of "\xa0" it will not write two spaces when using innerHTML 
+			var hangmanWord = hangmanWord.replaceAt(i, "\xa0");
+	}
+	
+}
+console.log(hangmanWord);
+var hangmanLetters = hangmanWord.replace(/(.{1})/g, "$1 ");
+console.log(hangmanLetters);
+document.getElementById("currentCountry").innerHTML = hangmanLetters;
+
+
+
+console.log(randomCountry);
+
+//////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
 //STEP6: RECOGNIZE KEY INPUT FROM USER
 //You can addEventListener directly to the document, you don't have to getElementById first!
 //I am detecting for a keypress event 
@@ -103,3 +126,18 @@ document.addEventListener("keypress", function(event) {
 		console.log("You already picked this letter");
 	}
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
