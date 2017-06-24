@@ -23,7 +23,11 @@ var randomCountry = lCaseCountryList[randomNumber];
 //The /./ matches everything
 //Future reference, If I want to use the literal . I have to escape it  /\./
 var hangmanWord = randomCountry.replace(/./gi, "_");
-var hangmanLetters = hangmanWord.replace(/_/gi, "_ ");
+//This creates a space between every underscore
+//This takes into acount every match because of the .
+//After the 1 position it will copy the original value because of the $
+//After what you replaced it will add a space
+var hangmanLetters = hangmanWord.replace(/(.{1})/g, "$1 ");
 console.log(randomCountry);
 document.getElementById("currentCountry").innerHTML = hangmanLetters;
 //////////////////////////////////////////////////////////////
@@ -60,7 +64,9 @@ document.addEventListener("keypress", function(event) {
 				hangmanWord = hangmanWord.replaceAt(i, guess);
 				}
 			}
-			console.log(hangmanWord);
+			//updates the user of correct guess
+			hangmanLetters = hangmanWord.replace(/(.{1})/g, "$1 ");
+			document.getElementById("currentCountry").innerHTML = hangmanLetters;
 			//This checks if we have guessed all the correct words
 			if (hangmanWord === randomCountry){
 				wins++;
@@ -69,13 +75,12 @@ document.addEventListener("keypress", function(event) {
 		}
 		//if the guess is not correct this will run
 		else {
-			lettersAlreadyGuessed.push(guess);
+			//this adds our guesses to our array
+			lettersAlreadyGuessed.push(" " + guess);
+			document.getElementById("lettersGuessed").innerHTML = lettersAlreadyGuessed;
 			numberOfGuessesRemaining--;
-			console.log(numberOfGuessesRemaining);
-			console.log(lettersAlreadyGuessed);
-			console.log("You guessed incorrectly!")
-			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
 		}
+		//This will reset the word if the user wins or runs out of guesses
 		if (hangmanWord === randomCountry || numberOfGuessesRemaining === 0) {
 			randomNumber = Math.floor(Math.random() * lCaseCountryList.length);
 			randomCountry = lCaseCountryList[randomNumber];
