@@ -19,3 +19,6 @@ to the following condition statement:
 if (lettersAlreadyGuessed.indexOf(guess) === -1 && hangmanWord.indexOf(guess) === -1) {
 
 Document.write to users for wins has been added.
+
+Document.write to users for guesses already made has been added.
+Document.write to users for correct responses has been updated. 
