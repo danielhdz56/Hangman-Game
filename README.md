@@ -26,3 +26,6 @@ Document.write to users for correct responses has been updated.
 Fixed spacing issue of certain countries
 
 Accounted for special punctuation in country names
+
+Need to fix bug on win reset. it doesn't work because of the puncturation 
+Fixed

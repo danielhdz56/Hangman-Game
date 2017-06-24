@@ -45,10 +45,10 @@ for (i = 0; i < randomCountry.length; i++) {
 		var hangmanWord = hangmanWord.replaceAt(i, "\xa0");
 	}
 	if ("." === randomCountry[i]) {
-		var hangmanWord = hangmanWord.replaceAt(i, "\.")
+		var hangmanWord = hangmanWord.replaceAt(i, "\.");
 	}
 	if ("'" === randomCountry[i]) {
-		var hangmanWord = hangmanWord.replaceAt(i, "\'")
+		var hangmanWord = hangmanWord.replaceAt(i, "\'");
 	}
 	
 }
@@ -90,7 +90,7 @@ document.addEventListener("keypress", function(event) {
 			hangmanLetters = hangmanWord.replace(/(.{1})/g, "$1 ");
 			document.getElementById("currentCountry").innerHTML = hangmanLetters;
 			//This checks if we have guessed all the correct words
-			if (hangmanWord === randomCountry){
+			if (hangmanWord.indexOf("_") === -1) {
 				wins++;
 				document.getElementById("wins").innerHTML = wins;
 			}
@@ -104,15 +104,28 @@ document.addEventListener("keypress", function(event) {
 			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
 		}
 		//This will reset the word if the user wins or runs out of guesses
-		if (hangmanWord === randomCountry || numberOfGuessesRemaining === 0) {
+		if ((hangmanWord.indexOf("_") === -1) || (numberOfGuessesRemaining === 0)) {
 			randomNumber = Math.floor(Math.random() * lCaseCountryList.length);
 			randomCountry = lCaseCountryList[randomNumber];
 			hangmanWord = randomCountry.replace(/./gi, "_");
+			for (i = 0; i < randomCountry.length; i++) {
+				if (" " === randomCountry[i]) {
+					hangmanWord = hangmanWord.replaceAt(i, "\xa0");
+				}
+				if ("." === randomCountry[i]) {
+					hangmanWord = hangmanWord.replaceAt(i, "\.");
+				}
+				if ("'" === randomCountry[i]) {
+					hangmanWord = hangmanWord.replaceAt(i, "\'");
+				}
+			}
 			hangmanLetters = hangmanWord.replace(/_/gi, "_ ");
 			document.getElementById("currentCountry").innerHTML = hangmanLetters;
 			numberOfGuessesRemaining = 12;
-			lettersAlreadyGuessed = [];
 			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
+			lettersAlreadyGuessed = [];
+			document.getElementById("lettersGuessed").innerHTML = lettersAlreadyGuessed;
+			console.log(randomCountry);
 		}	
 	}
 	else {
