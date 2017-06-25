@@ -29,3 +29,5 @@ Accounted for special punctuation in country names
 
 Need to fix bug on win reset. it doesn't work because of the puncturation 
 Fixed
+
+-Need to fix uppercase on certain letters for hangman

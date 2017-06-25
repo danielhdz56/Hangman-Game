@@ -1,0 +1,35 @@
+body {
+	background: #01091E;
+	color: #CCC5AB;
+}
+
+.panel-img-top {
+  border-top-right-radius: calc(0.25rem - 1px);
+  border-top-left-radius: calc(0.25rem - 1px);
+}
+
+.panel-block {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.panel-title {
+  margin-bottom: 0.75rem;
+}
+
+.panel-text:last-child {
+  margin-bottom: 0;
+}
+
+.border-dashed {
+	border-style: dashed;
+	border-width: .5rem;
+}
+
+.border-teal {
+	border-color: #4FAFAD;
+}
+
