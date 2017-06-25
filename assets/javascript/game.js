@@ -1,3 +1,43 @@
+//STEP0: SETUP HTML
+//0A: FadeIn Transition
+var elem = document.getElementById("appearSlow");
+//The timer variable in this case represents the opacity
+var timerOpacity = 0;
+function moreVisible() {
+	//We set this condition to make sure that the highest value for the opacity is 1
+	//Note if the condition is never true than this will go on forever! 
+	if (timerOpacity >= 1) {
+		//The clearInterval method clears a timer that is set by the setInteval method
+		//In essence, it ends the setInterval method from calling
+		//The ID value returned by setInteval is used as the parameter for clearInterval
+		//This is why we set t as the returned value of setInterval
+		//and then write that t as the parameter for clearInterval
+		clearInterval(t);
+	}
+	//This is the rate at which the timerOpacity is changing
+	timerOpacity += 0.05;
+	//I am focusing on the elem object (which in this case is the appearSlow id) and setting it to the value of the timer
+	elem.style.opacity = timerOpacity;
+	//This is the same thing as before, it is just support for I8 and lower browsers
+	elem.style.filter="alpha(opacity=" + (timerOpacity*100)+")";
+}
+//The setInterval is constantly calling the moreVisible function at specified intervals (in milliseconds) in this case 25
+var t = setInterval(moreVisible, 25);
+//0A: Down Transition
+var elem2 = document.getElementById("transitionDown");
+//Started this timer higher than my 62px
+var timerPosition = 70;
+function bringDown() {
+	if (timerPosition == 0) {
+		clearInterval(t2);
+	}
+	//Have to make sure that timerPosition%change is equal to zero or else it will go down forever
+	timerPosition -= 2;
+	//had to add "px" because it won't understand at what position. 
+	//Note did not have to do it above for the opacity because we don't specify a unit 
+	elem2.style.bottom = timerPosition + "px";
+}
+var t2 = setInterval(bringDown, 25);
 //STEP1: CREATE VARIABLES
 var numberOfGuessesRemaining = 12;
 var lettersAlreadyGuessed = [];

@@ -9,22 +9,21 @@
 <body>
 	<div class="container">
 		<div class="row">
-				<h1 class="text-center">The Hangman Game</h1>
+				<h1 id="transitionDown" class="text-center color-ltbrown">The Hangman Game</h1>
 		</div>
-		<div class="row">
+		<div class="row mt-3">
 			<div class="col-xs-12 col-sm-6">
-				<div class="panel border-dashed border-teal">				
-					<img class="panel-img-top" src="#" alt="Picture of Hangman">
+				<div class="panel bg-topography border-dashed border-teal">				
+					<img id="appearSlow" class="panel-img-top img-responsive p-3" src="assets/images/world-map.png" alt="Picture of Hangman">
 					<div class="panel-block">
-						<h4 class="panel-title">Hangman Game</h4>
-						<p class="panel-text">Panel Paragraph</p>
+						<div class="panel-title"><h3 class="text-center color-pink">CAN YOU GUESS THE COUNTRY?</h3></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-6">
-				<div class="panel text-center border-dashed border-teal">
+				<div class="panel text-center bg-game border-dashed border-teal color-dkpink">
 					<div class="panel-block">
-						<h4 class="panel-title">Press any key to get started!</h4>
+						<div class="panel-title"><h3 class="color-pink">PRESS ANY KEY TO GET STARTED!</h3></div>
 						<p>Wins</p>
 						<p id="wins"><br></p>
 						<p>Current Country</p>
@@ -32,7 +31,7 @@
 						<p>Number of Guesses Remaining</p>
 						<p id="guessesRemaining">12</p>
 						<p>Letters already guessed</p>
-						<p id="lettersGuessed"></p>
+						<p id="lettersGuessed"><br></p>
 					</div>
 				</div>
 			</div>

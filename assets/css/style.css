@@ -1,13 +1,40 @@
 body {
 	background: #01091E;
-	color: #CCC5AB;
+	/* Safari 4.0 - 8.0, won't work for Internet Explorer */
+	-webkit-animation-name: backgroundColor;
+	-webkit-animation-duration: 8s;
+	/* Standard syntax, won't work for Internet Explorer */
+	animation-name: backgroundColor;
+	animation-duration: 8s; 
 }
-
+/* keyframes to make css animated */
+@-webkit-keyframes backgroundColor {
+	from {background: #4FAFAD;}
+	to {background: #01091E;}
+}
+@keyframes backgroundColor {
+	from {background: #4FAFAD;}
+	to {background: #01091E;}
+}
+p {
+	font-size: 1.5rem;
+}
+/* HTML-CSS-JS Intereaction */
+#appearSlow {
+	/* IE9, Firefox, Chrome, Opera, and Safari */
+	opacity: 0; 
+	/* IE8 and earlier */
+	filter:alpha(opacity=0);
+}
+#transitionDown {
+	position: relative;
+	bottom: 62px;
+}
+/* Panels */
 .panel-img-top {
   border-top-right-radius: calc(0.25rem - 1px);
   border-top-left-radius: calc(0.25rem - 1px);
 }
-
 .panel-block {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 auto;
@@ -15,21 +42,43 @@ body {
           flex: 1 1 auto;
   padding: 1.25rem;
 }
-
 .panel-title {
   margin-bottom: 0.75rem;
 }
-
 .panel-text:last-child {
   margin-bottom: 0;
 }
-
+/* Borders */
 .border-dashed {
 	border-style: dashed;
 	border-width: .5rem;
 }
-
 .border-teal {
 	border-color: #4FAFAD;
 }
+/* Backgrounds */
+.bg-topography {
+	background-image: url("../images/topography.png");
+}
+.bg-game {
+	background-image: url("../images/playstation-pattern.png")
+}
+/* Text */
+.color-pink {
+	color: pink;
+}
+.color-dkpink {
+	color: #7F345A;
+}
+.color-ltbrown {
+	color: #CCC5AB;
+}
+/* Spacing */
+.p-3 {
+	padding: 0.75rem;
+}
+.mt-3 {
+	margin-top: 0.75rem;
+}
+
 
