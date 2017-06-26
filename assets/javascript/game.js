@@ -23,7 +23,7 @@ function moreVisible() {
 }
 //The setInterval is constantly calling the moreVisible function at specified intervals (in milliseconds) in this case 25
 var t = setInterval(moreVisible, 25);
-//0A: Down Transition
+//0B: Down Transition
 var elem2 = document.getElementById("transitionDown");
 //Started this timer higher than my 62px
 var timerPosition = 70;
@@ -39,7 +39,7 @@ function bringDown() {
 }
 var t2 = setInterval(bringDown, 25);
 //STEP1: CREATE VARIABLES
-var numberOfGuessesRemaining = 12;
+var numberOfGuessesRemaining = 5;
 var lettersAlreadyGuessed = [];
 var wins = 0;
 //STEP2: Creating Array with Country List
@@ -142,48 +142,42 @@ document.addEventListener("keypress", function(event) {
 			document.getElementById("lettersGuessed").innerHTML = lettersAlreadyGuessed;
 			numberOfGuessesRemaining--;
 			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
+			//This will slowly appear the words loser. Note you can concatinate everywhere
+			document.getElementById("loser" + (numberOfGuessesRemaining+1)).style.visibility = "visible";
 		}
 		//This will reset the word if the user wins or runs out of guesses
 		if ((hangmanWord.indexOf("_") === -1) || (numberOfGuessesRemaining === 0)) {
-			randomNumber = Math.floor(Math.random() * lCaseCountryList.length);
-			randomCountry = lCaseCountryList[randomNumber];
-			hangmanWord = randomCountry.replace(/./gi, "_");
-			for (i = 0; i < randomCountry.length; i++) {
-				if (" " === randomCountry[i]) {
-					hangmanWord = hangmanWord.replaceAt(i, "\xa0");
+			setTimeout(function() {
+				alert("Keep Playing!");
+				randomNumber = Math.floor(Math.random() * lCaseCountryList.length);
+				randomCountry = lCaseCountryList[randomNumber];
+				hangmanWord = randomCountry.replace(/./gi, "_");
+				for (i = 0; i < randomCountry.length; i++) {
+					if (" " === randomCountry[i]) {
+						hangmanWord = hangmanWord.replaceAt(i, "\xa0");
+					}
+					if ("." === randomCountry[i]) {
+						hangmanWord = hangmanWord.replaceAt(i, "\.");
+					}
+					if ("'" === randomCountry[i]) {
+						hangmanWord = hangmanWord.replaceAt(i, "\'");
+					}
 				}
-				if ("." === randomCountry[i]) {
-					hangmanWord = hangmanWord.replaceAt(i, "\.");
+				hangmanLetters = hangmanWord.replace(/_/gi, "_ ");
+				document.getElementById("currentCountry").innerHTML = hangmanLetters;
+				numberOfGuessesRemaining = 5;
+				document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
+				//This resets the visibility of loser
+				for (j = 5; j >= 1; j--) {
+					document.getElementById("loser" + j).style.visibility = "hidden";
 				}
-				if ("'" === randomCountry[i]) {
-					hangmanWord = hangmanWord.replaceAt(i, "\'");
-				}
-			}
-			hangmanLetters = hangmanWord.replace(/_/gi, "_ ");
-			document.getElementById("currentCountry").innerHTML = hangmanLetters;
-			numberOfGuessesRemaining = 12;
-			document.getElementById("guessesRemaining").innerHTML = numberOfGuessesRemaining;
-			lettersAlreadyGuessed = [];
-			document.getElementById("lettersGuessed").innerHTML = lettersAlreadyGuessed;
-			console.log(randomCountry);
+				lettersAlreadyGuessed = [];
+				document.getElementById("lettersGuessed").innerHTML = lettersAlreadyGuessed;
+				console.log(randomCountry);
+			}, 1000);
 		}	
 	}
 	else {
 		console.log("You already picked this letter");
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

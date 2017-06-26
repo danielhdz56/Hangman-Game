@@ -16,6 +16,71 @@ body {
 	from {background: #4FAFAD;}
 	to {background: #01091E;}
 }
+#firstColumn {
+		position: relative;
+		-webkit-animation-name: firstColumn;
+		-webkit-animation-duration: 4s;
+		animation-name: firstColumn;
+		animation-duration: 4s;
+	}
+@media (max-width: 991px){	
+	@-webkit-keyframes firstColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: 0px; top: 500px;}
+		100% {left: 0px; top: 0px;}
+	}
+	@keyframes firstColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: 0px; top: 500px;}
+		100% {left: 0px; top: 0px;}
+	}
+	#secondColumn {
+		position: relative;
+		-webkit-animation-name: secondColumn;
+		-webkit-animation-duration: 4s;
+		animation-name: secondColumn;
+		animation-duration: 4s;
+	}
+	@-webkit-keyframes secondColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: 0px; top: -500px;}
+		100% {left: 0px; top: 0px;}
+	}
+	@keyframes secondColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: 0px; top: -500px;}
+		100% {left: 0px; top: 0px;}
+	}
+}
+@media (min-width: 992px) {
+	@-webkit-keyframes firstColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: 600px; top: 0px;}
+		100% {left: 0px; top: 0px;}
+	}
+	@keyframes firstColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: 600px; top: 0px;}
+		100% {left: 0px; top: 0px;}
+	}
+	#secondColumn {
+		position: relative;
+		-webkit-animation-name: secondColumn;
+		-webkit-animation-duration: 4s;
+		animation-name: secondColumn;
+		animation-duration: 4s;
+	}
+	@-webkit-keyframes secondColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: -600px; top: 0px;}
+		100% {left: 0px; top: 0px;}
+	}
+	@keyframes secondColumn {
+		0% {left: 0px; top: 0px;}
+		50% {left: -600px; top: 0px;}
+		100% {left: 0px; top: 0px;}
+	}
+}
 p {
 	font-size: 1.5rem;
 }
@@ -29,6 +94,20 @@ p {
 #transitionDown {
 	position: relative;
 	bottom: 62px;
+}
+.loser {
+	position: relative;
+	width: 100%;
+	height: 90px;
+}
+.loser div {
+	height: 100%;
+	width: 20%;
+}
+#loser5, #loser4, #loser3, #loser2, #loser1 {
+	top: 0px;
+	background: red;
+	visibility: hidden;
 }
 /* Panels */
 .panel-img-top {
@@ -79,6 +158,10 @@ p {
 }
 .mt-3 {
 	margin-top: 0.75rem;
+}
+.my-0 {
+	margin-top: 0;
+	margin-bottom:0;
 }
 
 
