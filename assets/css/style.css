@@ -1,17 +1,8 @@
 body {
-	background: #63AD8A;
-	-webkit-animation: backgroundColor 2s infinite;
-	animation: backgroundColor 2s infinite;
+	background: #b4e391;
+	background: -webkit-linear-gradient(-45deg, #b4e391 0%,#b4e391 40%,#61c419 63%,#b4e391 100%); /*Safari 5.1-6*/
+	background: linear-gradient(180deg, #b4e391 0%,#b4e391 40%,#61c419 63%,#b4e391 100%); /*Standard*/
 	font-family: 'Sigmar One', cursive;
-}
-/* keyframes to make css animated */
-@-webkit-keyframes backgroundColor {
-	from {background: #DEF59E;}
-	to {background: #63AD8A;}
-}
-@keyframes backgroundColor {
-	from {background: #DEF59E;}
-	to {background: #63AD8A;}
 }
 #firstColumn {
 		position: relative;
