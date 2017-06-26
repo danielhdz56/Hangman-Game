@@ -23,25 +23,37 @@ function moreVisible() {
 }
 //The setInterval is constantly calling the moreVisible function at specified intervals (in milliseconds) in this case 25
 var t = setInterval(moreVisible, 25);
-//0B: Down Transition
-var elem2 = document.getElementById("transitionDown");
-//Started this timer higher than my 62px
-var timerPosition = 70;
-function bringDown() {
-	if (timerPosition == 0) {
+//OB: Right Transition
+var elem2 = document.getElementById("transitionRight");
+var timerPosition = 700;
+function bringRight() {
+	if (timerPosition <= 10) {
 		clearInterval(t2);
 	}
+	timerPosition -= 10;
+	elem2.style.right = timerPosition + "px";
+}
+var t2 = setInterval(bringRight, 25);
+//0C: Down Transition
+var elem3 = document.getElementById("transitionDown");
+//Started this timer higher than my 62px
+var timerPosition2 = 300;
+function bringDown() {
+	if (timerPosition2 == 2) {
+		clearInterval(t3);
+	}
 	//Have to make sure that timerPosition%change is equal to zero or else it will go down forever
-	timerPosition -= 2;
+	timerPosition2 -= 2;
 	//had to add "px" because it won't understand at what position. 
 	//Note did not have to do it above for the opacity because we don't specify a unit 
-	elem2.style.bottom = timerPosition + "px";
+	elem3.style.bottom = timerPosition2 + "px";
 }
-var t2 = setInterval(bringDown, 25);
+var t3 = setInterval(bringDown, 25);
 //STEP1: CREATE VARIABLES
 var numberOfGuessesRemaining = 5;
 var lettersAlreadyGuessed = [];
 var wins = 0;
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 //STEP2: Creating Array with Country List
 //Got this online
 var countryList = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre and Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts and Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
@@ -107,9 +119,10 @@ document.addEventListener("keypress", function(event) {
 	//The String.fromCharCode method returns a string based on the value associated with the key that was pressed
 	//Note: This works if the user's browser supports keyCode or which
 	var guess = String.fromCharCode(event.keyCode||event.which);
+	guess = guess.toLowerCase();
 	//The code will only run if the user hasn't guessed that letter yet
 	//and if that letter hasn't already been successful
-	if ((lettersAlreadyGuessed.indexOf(" " + guess) === -1) && (hangmanWord.indexOf(guess) === -1)) {
+	if ((lettersAlreadyGuessed.indexOf(" " + guess) === -1) && (hangmanWord.indexOf(guess) === -1) && (alphabet.indexOf(guess) !== -1)) {
 		//Will only run if the guess is correct, true
 		if (randomCountry.includes(guess)) {
 			//Creating a for loop that iterates every index of the randomCountry string
@@ -177,7 +190,10 @@ document.addEventListener("keypress", function(event) {
 			}, 1000);
 		}	
 	}
+	else if (alphabet.indexOf(guess) === -1) {
+		console.log("INVALID ENTRY");
+	}
 	else {
-		console.log("You already picked this letter");
+		console.log("You already guessed this letter");
 	}
 });
