@@ -102,7 +102,13 @@ for (i = 0; i < randomCountry.length; i++) {
 	if ("'" === randomCountry[i]) {
 		var hangmanWord = hangmanWord.replaceAt(i, "\'");
 	}
-	
+	//Accounts for Virgin Islands (US)
+	if("(" === randomCountry[i]) {
+		var hangmanWord = hangmanWord.replaceAt(i, "\(");
+	}
+	if(")" === randomCountry[i]) {
+		var hangmanWord = hangmanWord.replaceAt(i, "\)");
+	}
 }
 var hangmanLetters = hangmanWord.replace(/(.{1})/g, "$1 ");
 console.log(hangmanLetters);
@@ -133,8 +139,23 @@ document.addEventListener("keypress", function(event) {
 					if (i === 0) {
 						hangmanWord = hangmanWord.replaceAt(i, guess.toUpperCase());
 					}
+					//so long as the first letter of the word is not and i will evaluate this statement
+					//if there is a match and its preceded by a space in the name I am going to uppercase that letter
+					else if (" and " !== (randomCountry[i-1] + randomCountry[i] + randomCountry[i+1] + randomCountry[i+2] + randomCountry[i+3])) {
+						if (" of " === (randomCountry[i-1] + randomCountry[i] + randomCountry[i+1] + randomCountry[i+2])) {
+							hangmanWord = hangmanWord.replaceAt(i, guess);		
+						}
+						else if (" " === randomCountry[i-1]) {
+							hangmanWord = hangmanWord.replaceAt(i, guess.toUpperCase());
+						}
+						else {
+							//if there is a match I am going to update my hangmanWord
+							hangmanWord = hangmanWord.replaceAt(i, guess);
+							console.log("first letter first letter");
+						}
+						console.log("and and and and");
+					}
 					else {
-						//if there is a match I am going to update my hangmanWord
 						hangmanWord = hangmanWord.replaceAt(i, guess);
 					}
 				}
@@ -174,6 +195,12 @@ document.addEventListener("keypress", function(event) {
 					}
 					if ("'" === randomCountry[i]) {
 						hangmanWord = hangmanWord.replaceAt(i, "\'");
+					}
+					if ("(" === randomCountry[i]) {
+						hangmanWord = hangmanWord.replaceAt(i, "\(");
+					}
+					if(")" === randomCountry[i]) {
+						hangmanWord = hangmanWord.replaceAt(i, "\)");
 					}
 				}
 				hangmanLetters = hangmanWord.replace(/_/gi, "_ ");
