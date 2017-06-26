@@ -2,6 +2,7 @@ body {
 	background: #63AD8A;
 	-webkit-animation: backgroundColor 2s infinite;
 	animation: backgroundColor 2s infinite;
+	font-family: 'Sigmar One', cursive;
 }
 /* keyframes to make css animated */
 @-webkit-keyframes backgroundColor {
