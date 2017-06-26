@@ -1,20 +1,16 @@
 body {
-	background: #01091E;
-	/* Safari 4.0 - 8.0, won't work for Internet Explorer */
-	-webkit-animation-name: backgroundColor;
-	-webkit-animation-duration: 8s;
-	/* Standard syntax, won't work for Internet Explorer */
-	animation-name: backgroundColor;
-	animation-duration: 8s; 
+	background: #63AD8A;
+	-webkit-animation: backgroundColor 2s infinite;
+	animation: backgroundColor 2s infinite;
 }
 /* keyframes to make css animated */
 @-webkit-keyframes backgroundColor {
-	from {background: #4FAFAD;}
-	to {background: #01091E;}
+	from {background: #DEF59E;}
+	to {background: #63AD8A;}
 }
 @keyframes backgroundColor {
-	from {background: #4FAFAD;}
-	to {background: #01091E;}
+	from {background: #DEF59E;}
+	to {background: #63AD8A;}
 }
 #firstColumn {
 		position: relative;
@@ -110,8 +106,16 @@ p {
 }
 #loser5, #loser4, #loser3, #loser2, #loser1 {
 	top: 0px;
-	background: red;
+	background: #EC0B76;
 	visibility: hidden;
+	-webkit-animation: loser 5s infinite;
+	animation: loser 5s infinite;
+}
+@-webkit-keyframes loser {
+	50% {box-shadow: 10px 20px 30px #888888;}
+}
+@keyframes loser {
+	50% {box-shadow: 10px 20px 30px #888888;}
 }
 /* Panels */
 .panel-img-top {
@@ -136,8 +140,8 @@ p {
 	border-style: dashed;
 	border-width: .5rem;
 }
-.border-teal {
-	border-color: #4FAFAD;
+.border-green {
+	border-color: #83D35E;
 }
 /* Backgrounds */
 .bg-topography {
@@ -147,14 +151,8 @@ p {
 	background-image: url("../images/playstation-pattern.png")
 }
 /* Text */
-.color-pink {
-	color: pink;
-}
 .color-dkpink {
-	color: #7F345A;
-}
-.color-ltbrown {
-	color: #CCC5AB;
+	color: #C13059;
 }
 /* Spacing */
 .p-3 {
@@ -178,5 +176,6 @@ p {
 		padding: 6px 0;
 	}
 }
-
-
+.loser h2 {
+	font-size: 40px;
+}

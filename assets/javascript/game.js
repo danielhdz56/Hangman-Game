@@ -214,7 +214,7 @@ document.addEventListener("keypress", function(event) {
 				lettersAlreadyGuessed = [];
 				document.getElementById("lettersGuessed").innerHTML = lettersAlreadyGuessed;
 				console.log(randomCountry);
-			}, 1000);
+			}, 250);
 		}	
 	}
 	else if (alphabet.indexOf(guess) === -1) {
