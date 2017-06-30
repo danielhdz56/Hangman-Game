@@ -157,6 +157,9 @@ p {
 	margin-top: 0;
 	margin-bottom:0;
 }
+.m-0a {
+	margin: 0 auto;
+}
 /* media Queries */
 @media (max-width: 768px) {
 	.loser {
